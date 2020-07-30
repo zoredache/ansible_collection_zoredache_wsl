@@ -1,0 +1,12 @@
+- name: Install packages for remote xfce4 usage
+  apt:
+    cache_valid_time: 7200
+    install_recommends: yes
+    state: present
+    update_cache: yes
+    name:
+    - xfce4-terminal
+    - xfce4-panel
+    - xfce4
+    - xfce4-goodies
+    - gnome-icon-theme

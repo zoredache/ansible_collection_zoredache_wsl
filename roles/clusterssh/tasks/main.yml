@@ -1,0 +1,25 @@
+- name: Install packages for remote X11 usage
+  apt:
+    cache_valid_time: 7200
+    install_recommends: yes
+    state: present
+    update_cache: yes
+    name:
+    - clusterssh
+    - xauth
+    - xclip
+    - xterm
+
+- name: Deploy etc/profile.d fragments
+  copy:
+    src: etc/profile.d/
+    dest: /etc/profile.d/
+    owner: root
+    group: root
+
+- name: Create various configs for xfce4
+  copy:
+    src: home/.Xresources
+    dest: ~/.Xresources
+    mode: 0644
+    force: no

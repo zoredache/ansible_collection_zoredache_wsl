@@ -1,0 +1,28 @@
+- name: Deploy etc/profile.d fragments
+  copy:
+    src: etc/profile.d/
+    dest: /etc/profile.d/
+    owner: root
+    group: root
+
+- name: Have bashrc load /etc/profile
+  blockinfile:
+    path: ~/.bashrc
+    marker: "# {mark} ANSIBLE MANAGED BLOCK bash_profile"
+    block: |
+      source /etc/profile
+
+- name: Deploy etc/profile.d/wsh?_local_x11.sh fragment
+  when: wsl_version is defined and wsl_version in ('ws1', 'wsl2')
+  copy:
+    dest: /etc/profile.d/{{ wsl_version }}_local_x11.sh
+    owner: root
+    group: root
+    content: |
+      {% if 'wsl2' == wsl_version %}
+      export DISPLAY=$(ip route show to 0.0.0.0/0 | awk '{ print $3 }'):0
+      {% endif %}
+      {% if 'wsl1' == wsl_version %}
+      export DISPLAY="localhost:0.0"
+      {% endif %}
+      export LIBGL_ALWAYS_INDIRECT=1

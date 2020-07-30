@@ -1,0 +1,9 @@
+- hosts: wsl
+  gather_facts: no
+  tasks:
+  - import_role:
+      name: zoredache.wsl.bash_profile
+  - import_role:
+      name: zoredache.wsl.clusterssh
+  - import_role:
+      name: zoredache.wsl.docker

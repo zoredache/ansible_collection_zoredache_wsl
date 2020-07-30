@@ -1,0 +1,6 @@
+- name: Deploy etc/profile.d fragments
+  copy:
+    src: etc/profile.d/
+    dest: /etc/profile.d/
+    owner: root
+    group: root
