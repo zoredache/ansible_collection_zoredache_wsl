@@ -1,0 +1,20 @@
+- name: Install ssh server and supervisor
+  package:
+    state: present
+    name:
+    - openssh-server
+    - openssh-sftp-server
+    - supervisor
+
+- name: Update configs for sshd
+  copy:
+    dest: "{{ item.dest }}"
+    src: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: "0644"
+  loop:
+  - dest: /etc/supervisor/conf.d/sshd.conf
+    src: etc/supervisor/conf.d/sshd.conf
+  - dest: /etc/ssh/sshd_config
+    src: etc/ssh/sshd_config
