@@ -1,0 +1,15 @@
+- name: Install tmux
+  package:
+    state: present
+    name:
+    - tmux
+
+- name: Update configs for tmux
+  copy:
+    dest: "{{ item.dest }}"
+    src: "{{ item.src }}"
+  loop_control:
+    label: "{{ item.dest }}"
+  loop:
+  - dest: ~/.tmux.conf
+    src: home/.tmux.conf
