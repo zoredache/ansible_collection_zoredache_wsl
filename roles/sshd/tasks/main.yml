@@ -9,10 +9,12 @@
 - name: Update configs for sshd
   copy:
     dest: "{{ item.dest }}"
-    src: "{{ item.dest }}"
+    src: "{{ item.src }}"
     owner: root
     group: root
     mode: "0644"
+  loop_control:
+    label: "{{ item.dest }}"
   loop:
   - dest: /etc/supervisor/conf.d/sshd.conf
     src: etc/supervisor/conf.d/sshd.conf
