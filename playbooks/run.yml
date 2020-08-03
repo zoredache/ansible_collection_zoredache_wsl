@@ -6,3 +6,4 @@
   - zoredache.wsl.docker
   - zoredache.wsl.sshd
   - zoredache.wsl.tmux
+  - zoredache.wsl.wslconf

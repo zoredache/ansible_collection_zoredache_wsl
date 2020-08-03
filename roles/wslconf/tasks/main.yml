@@ -1,0 +1,9 @@
+- name: Copy in wsl.conf
+  copy:
+    dest: "{{ item.dest }}"
+    src: "{{ item.src }}"
+  loop_control:
+    label: "{{ item.dest }}"
+  loop:
+  - dest: /etc/wsl.conf
+    src: etc/wsl.conf
